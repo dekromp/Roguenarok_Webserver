@@ -1,0 +1,4 @@
+./config/*
+./public/jobs/*
+./log/*
+./testfiles/*

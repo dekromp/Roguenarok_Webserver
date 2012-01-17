@@ -1,0 +1,12 @@
+class CreatePrunings < ActiveRecord::Migration
+  def self.up
+    create_table :prunings do |t|
+
+      t.timestamps
+    end
+  end
+
+  def self.down
+    drop_table :prunings
+  end
+end

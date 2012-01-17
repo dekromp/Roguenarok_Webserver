@@ -1,0 +1,20 @@
+<!-- Autorefresh and call of action Check for Results -->
+<meta http-equiv="refresh" content="2" >
+<p>
+  <h2>Your Job is Running</h2>
+</p>
+<p>
+  <h3>Info</h3>
+</p>
+<div id="separator_top">
+  &nbsp;
+</div>
+
+<p>Your results will appear in this window when the job has been finished.</p>
+<p>Your Job ID is 0000000.</p>
+<p>You can use the id to look up your job later in the <%= link_to "Look up Jobs", :action => 'look'%> section.</p>
+<p><i>Your results will be deleted after 2 weeks from now!</i></p>
+<%= @i%>
+<div id="separator_bottom">
+  &nbsp;
+</div>

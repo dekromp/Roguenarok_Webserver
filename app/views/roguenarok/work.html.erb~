@@ -1,0 +1,208 @@
+<table>
+  <tr>
+    <td>
+
+      <p>
+        <h2>Workflow</h2>
+      </p>
+
+      <p><b><i>JobID:</i></b> <%= @jobid %></p>
+      <p><b><i>Description:</i></b> <%= @description %></p>
+
+      <pre><%= error_messages_for  :job , :header_message => "#{@job.errors.size} error(s) occurred in your input!"%></pre>
+
+        <!-- Rogue Taxon Analysis Options -->
+      <p><h3>Rogue Taxon Analysis</h3></p>
+
+      <div id="separator_top">
+        &nbsp;
+      </div>
+
+      <% form_tag(:action => 'work', :jobid => @jobid, :jobtype => 'analysis', :multipart => true) do %>
+      <table cellspacing="0">
+        <!--<colgroup>
+          <col width="200" span="1">
+          <col>
+          <col width="800" span="1">
+          <col>
+        </colgroup>  -->
+        <!-- RogueNaRok Options -->
+        <tr id="roguenarok_threshold" >
+          <td align="right" valign="top" id="roguenarok_threshold" >Threshold:</td>
+          <td align="left">
+            <ul>
+              <li><%= radio_button_tag 'threshold', 'strict',@strict %>strict</li>
+              <li><%= radio_button_tag 'threshold', 'mr' ,@mr%>MR</li>
+              <li><%= radio_button_tag 'threshold', 'mre', @mre %>MRE</li>
+              <li><%= radio_button_tag 'threshold', 'user' ,@user_def %>User defined: 49&lt;<%= text_field_tag 'threshold_user_defined' , @user_def_value, :size=>1%>&lt;101 </li>
+              <li><%= radio_button_tag 'threshold', 'bipartitions' ,@bipartitons, :disabled => @best_tree_available %>Bipartitions on best tree (treefile required)</li>
+            </ul>
+          </td>
+        </tr>
+
+        <tr id="roguenarok_optimize" >
+          <td align="right" valign="top">Optimize with:</td>
+          <td align="left"> 
+            <ul>
+              <li><%= radio_button_tag 'optimize', 'support', @support %>Support</li>
+              <li><%= radio_button_tag 'optimize', 'number_of_bipartitions', @numb_bipart %>Number of bipartitions</li>
+            </ul> 
+          </td>
+        </tr>
+
+        <tr id="roguenarok_dropset" >
+          <td align="right" valign="top"><p>Size of dropset:</p></td>
+          <td align="left"><%= text_field_tag 'dropset' , @dropset, :size=>2%></td>
+        </tr>
+        
+        <!-- LSI Options -->
+        <tr id="lsi_options"  >
+          <td align="right" valign="top"><p>Options:</p></td>
+          <td align="left" >
+            <input id="lsi_dif" name="lsi[dif]" type="checkbox" value="DIF" checked  />DIF</br>
+            <input id="lsi_ent" name="lsi[ent]" type="checkbox" value="ENT"/>ENT</br>
+            <input id="lsi_max" name="lsi[max]" type="checkbox" value="MAX"/>MAX</br>
+          </td> 
+        </tr>
+        
+        <!-- TII Options -->
+        
+        <!-- no options -->
+        
+        <!-- Submission Selection -->
+        <tr>
+          <td align="left"><p>&nbsp;</p></td>
+          <td align="left" valign="top">
+            <%= select_tag "taxa_analysis", "#{@taxa_analysis_options}", :onclick => "hideAnalysisOptions('roguenarok_threshold','roguenarok_optimize', 'roguenarok_dropset', 'lsi_options')" %>
+            <%= submit_tag 'Do it!', :name=>'analysis' %></td>
+        </tr>
+        <% end%>
+        
+        
+        
+        <!-- Excluded Taxa Visualization and Selection -->
+        <% form_tag(:action => 'work', :jobid => @jobid, :jobtype => 'include' ,:multipart => true) do %>
+        <tr>
+          <td align="right" valign="top">Excluded taxa:</td>
+          <td>
+            <table>
+              <tr id="table_header" > 
+                <% for i in 0..@ex_cols-1 do %>
+                <td></td>
+                <td>Name</td>
+                <% end %>
+              </tr>
+              <% counter = 0 %> 
+              <% for i in 0..@ex_rows-1 do %>
+              <tr id = <%=i%> >
+                <% for j in 0..@ex_cols-1 do %>
+                <% if @ex_taxa[j].nil? || @ex_taxa[j][i].nil? %>
+                <td></td><td></td>
+                <% else %>
+                <td>
+                  <input id="<%="extaxa_#{counter}"%>" name="<%="extaxa[#{counter}]"%>" type="checkbox" value="<%=@ex_taxa[j][i].name%>"/></td>
+                  
+                  <% counter = counter+1 %> 
+                <td><%= @ex_taxa[j][i].name %></td>
+                <% end %>
+                <% end %>
+              </tr>
+              <script type="text/javascript">isEven(<%=i%>)</script>
+              <% end %>
+            </table> 
+          </td>
+        </tr>
+        <tr>
+          <td align="left">&nbsp;</td>
+          <td align="left" valign="top"><%= submit_tag 'Include Selected Taxa', :name=>'includeSeTaxa' %></td>
+        </tr>
+        <% end%>
+        
+      </table> 
+      
+      <!-- Prune Current Tree Options -->
+      <p>
+        <h3>Prune Current Tree</h3>
+      </p>
+      <div id="separator_top">
+        &nbsp;
+      </div>
+      <% form_tag(:action => 'work', :jobtype => 'treeManipulation', :jobid => @jobid, :multipart => true) do %>
+      <table>
+        <tr>
+          <td align="right" valign="top">Current tree:</td>
+          <td align="left"><%= text_area_tag 'current_tree', @current_tree ,:size=>"50x2"%></td>
+        </tr>
+        
+        <tr>
+          <td align="right" valign="top" ><div id="prune_threshold_text">Threshold:</div></td>
+          <td align="left"><div id="prune_threshold_options">
+              <ul>
+                <li><%= radio_button_tag 'threshold_prune', 'strict',@strict %>strict</li>
+                <li><%= radio_button_tag 'threshold_prune', 'mr' ,@mr%>MR</li>
+                <li><%= radio_button_tag 'threshold_prune', 'mre', @mre %>MRE</li>
+                <li><%= radio_button_tag 'threshold_prune', 'user' ,@user_def %>User defined: 49&lt;<%= text_field_tag 'threshold_user_defined' , @user_def_value, :size=>1%>&lt;101 </li>
+                <li><%= radio_button_tag 'threshold_prune', 'bipartitions' ,@bipartitons, :disabled => @best_tree_available %>Bipartitions on best tree (treefile required)</li>
+            </ul></div>
+          </td>
+        </tr>
+        <tr>
+          
+        <tr>
+          <td align="left"><p>&nbsp;</p></td>
+          <td align="left" valign="top"> 
+            <%= select_tag "tree_manipulation", "#{@tree_manipulation_options}", :onclick => "hidePruneThresholds('prune_threshold_text', 'prune_threshold_options')" %>
+            <%= submit_tag 'Do it!', :name=>'prune' %></td>
+        </tr>
+        <tr>
+          <td align="right" valign="top">Taxa List:</td>
+          <td>
+             <table>
+              <tr id="table_header" > 
+                <td></td>
+                <% @taxa["header"].each do |h| %>
+                <td><%= h %></td>
+                <% end %>
+              </tr>
+             
+              <% i = 1 %>
+              <% @taxa.each_key do |name| %>
+              <% if !name.eql?("header") %>
+              <tr id =<%=i+@taxa.size%> > 
+                <td><input type="checkbox" id="<%="taxa_#{i}"%>" name="<%="taxa[#{i}]"%>" value="<%=name%>"/>
+                  <% @taxa[name].each do |score| %></td>
+                <td><%= score %></td>
+                <% end %>
+              </tr>
+              <script type="text/javascript">isEven(<%=i+@taxa.size%>)</script>
+              <% i +=1 %>
+              <% end %>
+              <% end %>
+            </table> 
+          </td>
+        </tr> 
+      </table>
+      
+      <% end%>
+      
+      <div id="separator_bottom">
+        &nbsp;
+      </div>
+    </td>
+    
+    <!-- Right Section where are the result files are listed for download -->
+    <td valign="top">
+      <h3>Result Files</h3>
+      </br>
+      <ul>
+        <% @files.each do |f| %>
+        <li><%= link_to f, :action => 'download' , :file => f%></li>
+        <% end %>
+      </ul>
+    <td>
+  </tr>
+</table>
+<script type="text/javascript">
+  hidePruneThresholds("prune_threshold_text", "prune_threshold_options");
+  hideAnalysisOptions('roguenarok_threshold','roguenarok_optimize', 'roguenarok_dropset', 'lsi_options'); 
+</script>

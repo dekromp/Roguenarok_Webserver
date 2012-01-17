@@ -1,0 +1,39 @@
+<p>
+  <h2>Contact</h2>
+</p>
+
+<p>
+  <h3>Send us bug reports, questions, special requests or suggestions for improvements</h3>
+</p>
+
+<div id="separator_top">
+  &nbsp;
+</div>
+<% form_tag({:action => 'sendMessage'},:multipart => true) do %>
+<table>
+  <tr>
+    <td align="right"> Name:</td>
+    <td align="left">  <%= text_field_tag 'contact_name',nil,  :size=>50 %> </td>
+  </tr>
+  <tr>
+    <td align="right"> Email:</td>
+    <td align="left" > <%= text_field_tag 'contact_email',nil, :size=>50 %> </td>
+  </tr>
+  <tr>
+    <td align="right"> Subject:</td> 
+    <td align="left">  <%= text_field_tag 'contact_subject',nil,  :size =>50 %></td>
+  </tr>
+  <tr>
+    <td align="right"> Message:</td>
+    <td align="left">  <%= text_area_tag 'contact_message', nil, :size => "60x15"%></td>
+  </tr>
+  <tr>
+    <td align="left"><p>&nbsp;</p></td>
+    <td align="left" valign="top"><%= submit_tag 'Send', :name=>'send' %></td>
+  </tr>
+</table>
+<% end%>
+
+<div id="separator_bottom">
+  &nbsp;
+</div>

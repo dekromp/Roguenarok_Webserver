@@ -1,0 +1,31 @@
+<% form_tag({:action => 'deleteJobs'},:multipart => true) do %>
+
+<p>
+  <h2>Job Administration</h2>
+</p>
+<p>
+  <h3>Past Job Submissions</h3>
+</p>
+<div id="separator_top">
+  &nbsp;
+</div>
+
+<table  width="650px">
+  <tr>
+    <td></td>
+    <td><b>Job ID</b></td>
+    <td><b>Description</b></td>
+    <td><b>Expired in:</b></td>
+  </tr>
+  <tr>
+    <td align="left"><p>&nbsp;</p></td>
+    <td> <%= submit_tag 'Delete', :name=>'delete' %></td>
+    <td align="left"><p>&nbsp;</p></td>
+    <td align="left"><p>&nbsp;</p></td>
+  </tr>
+</table>
+
+<% end%>
+<div id="separator_bottom">
+  &nbsp;
+</div>

@@ -1,0 +1,60 @@
+<p>
+  <h2>About</h2>
+</p>
+
+<p>
+  <h3>RogueNaRok: identifying rogue taxa in a set of phylogenetic trees</h3>
+</p>
+<div id="separator_top">
+  &nbsp;
+</div>
+
+<div style="width:628px;">
+  <div id="text">
+    Rogue taxa are a class of taxa with uncertain position in a phylogenetic tree. For inference methods that yield a tree set (bootstrapping, Bayesian tree searches), rogue taxa can assume different positions for each tree. Theoretically, the presence of few rogue taxa in a tree set is sufficient to render the consensus tree of this tree set devoid of any phylogenetic information. Practically, in almost any tree set we can at least slightly improve the sum of branch support values in a consensus tree (by removing rogue taxa).
+  </div>
+  
+  <div id="text">
+    <h3>Suggested workflow:</h3>
+    <p>
+    <ul>
+      <p><li style="list-style-type:decimal;list-style-position:Inside;">Upload a tree set (1 Newick tree per line). Also upload a maximum likelihood estimate (MLE) tree, if you want RogueNaRok to optimize the bipartition support drawn on your MLE tree. </li></p>
+      <p><li style="list-style-type:decimal;list-style-position:Inside;">Start rogue taxon identification (in many cases default parameters do not need to be modified). Once finished, a listing of taxa is annotated with values indicating how detrimental the specific taxon is to the consensus tree. The annotation can be extended with the result of various runs. This way, you can for instance compare, what taxa are determined to be rogues depending on parameter and algorithm choice (or which rogues also decrease the bipartition support drawn on a MLE tree). </li></p>
+      <p><li style="list-style-type:decimal;list-style-position:Inside;">Once you have decided on a set of rogue taxa to exclude, you can remove these taxa from your tree set and obtain the consensus tree of your choice (resp. MLE tree with bipartition support). Alternatively, you may want to go through further iterations of step (2), in case taxa were determined to be rogue that are crucial for your analysis or in case you want to continue exploring the parameter space. </li></p>
+    </ul>
+    </p>
+  </div>
+    
+  <div id="text">
+    <h3>Available algorithms and their output: </h3>
+    <p>
+    <ul>
+      <p><li style="list-style-type:disc;list-style-position:Inside;"><b>RogueNaRok-algorithm:</b> a fast algorithm that iteratively determines how exactly the support of consensus bipartitions changes, if a set of n taxa is removed from the tree set. An annotation of 1.5 means, that the equivalent of 1.5 fully supported bipartitions (e.g., 3 bipartitions with support 50%) is added to the consensus tree, if this taxon and all taxa determined in previous iterations (note the sorting of the listing) are removed from the tree set.</li><p>
+      <p><li style="list-style-type:disc;list-style-position:Inside;"><b>Leaf stability index:</b> a statistic for measuring the node stability in a tree set based on quartet frequencies by Thorley and Wilkinson (1999). Values range between 0 (unstable) and 1 (stable).</li></p>
+      <p><li style="list-style-type:disc;list-style-position:Inside;"><b>Taxonomic instability index:</b> a statistic for measuring the node stability in a tree set based on unweighted patristic distances by Maddison and Maddison (also implemented in Mesquite). The higher the annotation value, the more unstable is the taxon.</li></p>
+    </ul>
+    </p>
+  </div>
+
+  <div id="text">
+    <h3>Standalone and further Documentation: </h3> 
+    <p>
+      <ul>
+        <p><li style="list-style-type:disc;list-style-position:Inside;">For large datasets (e.g. 1000 trees with 1000 taxa) or expensive choices of parameters, it is advisable to download a copy of the RogueNaRok implementation and execute the programs on a local machine or a cluster. </br>
+            For the most current version, visit <a href="https://github.com/aberer/RogueNaRok">https://github.com/aberer/RogueNaRok</a>.</li></p>
+        <p><li style="list-style-type:disc;list-style-position:Inside;">The wiki on our github site provides detailed information on program parameters and a hands-on tutorial:</br> 
+      software: <a href="https://github.com/aberer/RogueNaRok/wiki">https://github.com/aberer/RogueNaRok/wiki</a></li></p>
+        
+        <p><li style="list-style-type:disc;list-style-position:Inside;">The RogueNaRok algorithm is explained in detail in this technical report: </br>
+          <a href="http://sco.h-its.org/exelixis/rrdr2011-10.php">http://sco.h-its.org/exelixis/rrdr2011-10.php</a></li></p>
+        
+        <p><li style="list-style-type:disc;list-style-position:Inside;">The standalone version of the code also provides an implementation of the unrooted maximum agreement subtree (U-MAST) that is not part of the webserver version. </li></p>
+      </ul>
+    </p>
+  </div>
+  </div>
+  
+
+<div id="separator_bottom">
+  &nbsp;
+</div>

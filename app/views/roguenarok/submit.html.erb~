@@ -1,0 +1,46 @@
+<p>
+  <h2>Submit Job</h2> 
+</p>
+<pre>
+<%= error_messages_for  :job, :user , :header_message => "#{@job.errors.size+ @user.errors.size} error(s) occurred in your input!"%>
+</pre>
+<p>
+  <h3>Input Files</h3>
+</p>
+
+<div id="separator_top">
+  &nbsp;
+</div>
+<% form_tag({:action => 'upload'},:multipart => true) do %>
+<table cellspacing="8">
+  <tr>
+    <td align="right" ><label for="bootstrap_tree_set">Bootstrap Tree Set:</label></td>
+    <td><%= file_field 'bootstrap_tree_set', 'file' %></td>
+  </tr>
+  <tr>
+    <td align="right"><label for="best_known_tree">Best Known Tree (optional):</label></td>
+    <td><%= file_field 'best_known_tree', 'file' %></td>
+  </tr>
+  <tr>
+    <td align="right"><label for="taxa_to_exclude">Taxa to exclude from analysis (optional):</label></td>
+    <td><%= file_field 'taxa_to_exclude', 'file' %></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top"><label for="description">Job Description:</label></td>
+    <td><%= text_area_tag 'description', nil,  :size=>"52x3"%></td>
+  </tr>
+  <tr>
+    <td align="right"><label for="email">Email Address:</label></td>
+    <td align="left"><%= text_field 'email', 'email_address' %></td>
+  </tr>
+  <tr>
+    <td align="left" ><p>&nbsp;</p></td>
+    <td align="left" valign="top"><%= submit_tag 'Upload', :name=>'upload' %></td>
+  </tr>
+</table>
+<% end%>
+    
+<div id="separator_bottom">
+  &nbsp;
+</div>
+

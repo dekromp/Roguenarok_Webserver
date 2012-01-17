@@ -1,0 +1,14 @@
+class ResultFilesParser
+  attr_reader :files
+
+  def initialize(path)
+    getFiles(path)
+  end
+  
+  def getFiles
+    Dir.glob(File.join(path,"*")){|file|
+      @files << file
+    }
+             
+  end
+end

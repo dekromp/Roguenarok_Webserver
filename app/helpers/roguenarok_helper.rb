@@ -1,0 +1,2 @@
+module RoguenarokHelper
+end

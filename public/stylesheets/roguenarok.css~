@@ -1,0 +1,142 @@
+/*Tags*/
+body {
+    text-align: center;
+    max-width: 1024px;
+    min-width: 1024px;
+    font-family: arial,sans-serif;
+    font-size:0.9em;
+    background-color:#ffffff;  
+}
+
+/*Website Headline*/
+h1 {
+    font-size: 2.0em;
+    font-weight: 600;
+    color: #4a3d77;
+    font-stretch: expanded;
+}
+
+/*Section Headlines*/
+h2 {
+    font-size:1.5em;
+    font-weight: 600;
+}
+
+/*Input Headlines*/
+h3 {
+    font-size:1.2em;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 0px;
+}
+
+ul {
+    list-style-type: none;
+    padding:0px;
+    margin-top:0px;
+}
+
+a {
+    text-decoration:none;
+    color: #4a3d77;
+}
+
+a:hover {
+    color: #ff7e00;
+}
+
+/*ids*/
+
+#header {
+    line-height: 76px;
+    height: 85px;
+    background-image: url(/images/header.png);
+}
+
+#navigation {
+    height:30px;
+    background-image: url(/images/navigation.png);
+    line-height:22px;
+}
+
+#navigation a{
+    text-decoration:none;
+    color: #ffffff;
+}
+
+#navigation a:hover{
+    color: #ff7e00;
+}
+
+#spacer {
+    width:199px;
+    float:left;
+}
+
+#nav_points {
+    width:157px;
+    font-size: 13px;
+    color: #ff7e00;
+    float:left;
+}
+
+#logo {
+    padding-right: 30px;
+    text-align:right;
+    width:195;
+    font-size:13px;
+    color: #ffffff;
+    float:none; 
+    font-weight: 600;
+}
+
+#content {
+    padding-left:199px;
+    text-align:left;
+    font-size:0.9em;
+}
+
+#separator_top {
+    line-height:1px;
+    margin-bottom:10px;
+    width: 628px;
+    vertical-align: bottom;
+    background: url(/images/separator.png) repeat-x;
+}
+
+#separator_bottom {
+    line-height:1px;
+    width: 628px;
+    margin-top:80px;
+    background: url(/images/separator.png) repeat-x;
+}
+
+#footer {
+    font-weight: 600;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+#footer a{
+    text-decoration:none;
+    color: #000000;
+}
+
+#footer a:hover{
+    color: #ff7e00;
+}
+
+.errorExplanation {
+    border: 2px solid red;
+    padding: 2em;
+    font-family: monospace;
+    font-size: 1.1em;
+}
+
+#table_header {
+    color: white ;
+    background-color: #4a3d77;
+    font-size:1.1em;
+    text-decoration:underline;
+ }
+

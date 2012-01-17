@@ -1,0 +1,34 @@
+<p>
+  <h2>Look up Jobs</h2>
+</p>
+
+<p>
+  <h3>Identification</h3>
+</p>
+
+<div id="separator_top">
+  &nbsp;
+</div>
+<% form_tag({:action => 'listJobs'},:multipart => true) do %>
+<table cellspacing="8">
+  <tr>
+    <td align="right">Enter Job ID:</td>
+    <td align="left"><%= text_field 'enter_job_id', 'job_id'%> </td>
+  </tr>
+  <tr> 
+    <td align="right"> OR </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right"> Enter Email Address:</td>
+    <td align="left"><%= text_field 'enter_email_address', 'email_address'%> </td>
+  </tr>
+  <tr>
+    <td align="left"><p>&nbsp;</p></td>
+    <td align="left" valign="top"><%= submit_tag 'Search', :name=>'search' %></td>
+  </tr>
+</table>
+<% end%>
+<div id="separator_bottom">
+  &nbsp;
+</div>

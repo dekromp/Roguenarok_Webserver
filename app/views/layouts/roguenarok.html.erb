@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+  <title>Roguenarok</title>
+  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag 'roguenarok' %>
+  <style type="text/css"></style>
+  <body>
+    <!--Header -->
+    <div id="header">
+      <h1>Roguenarok</h1>
+    </div>
+
+    <!-- Navigation and Logo -->
+    <div id="navigation">
+      <div id="spacer">
+        &nbsp;
+      </div>
+      <div id="nav_points">
+        <%= link_to_unless_current "Submit Job", :action => 'submit'%>
+      </div>
+      <div id="nav_points">
+        <%= link_to_unless_current "Look up Jobs", :action => 'look'%>
+      </div>
+      <div id="nav_points">
+        <%= link_to_unless_current "Contact", :action => 'contact'%>
+      </div>
+      <div id="nav_points">
+        <%= link_to_unless_current "About", :action => 'about'%>
+      </div>
+      <div id="logo">
+        <a href="http://www.exelixis-lab.org/", target="_blank">Exelixis Lab</a>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div id="content">
+      <%= yield%>
+    </div>
+
+    <div id="footer">
+      <p> &copy 2011 <a href="http://www.exelixis-lab.org/", target="_blank">Exelixis Lab</a> |  <%= link_to "Contact", :action => 'contact'%></p>
+    </div>
+      
+    </body>
+</html>

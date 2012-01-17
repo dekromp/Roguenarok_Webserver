@@ -1,0 +1,33 @@
+require 'test_helper'
+
+class RoguenarokControllerTest < ActionController::TestCase
+  
+  #### Testfiles ####
+
+  # Testfiles for upload
+  @bootstrap_treeset_valid = ""
+  @bootstrap_treeset_error = ""
+  @best_known_tree_valid   = ""
+  @best_known_tree_error   = ""
+  @taxa_excluded_valid     = ""
+  @taxa_excluded_error     = ""
+  @email_valid             = ""
+  @email_error             = ""
+
+
+
+  def test_index
+    get :index
+    assert_response :success
+  end
+
+  def test_submit
+    get :submit
+    assert_response :success
+  end
+
+  def test_upload
+    
+
+  end
+end
